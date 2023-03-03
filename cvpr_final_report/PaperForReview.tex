@@ -89,8 +89,8 @@ ASL is a visual-gestural language, meaning that it uses facial expressions, body
 
 \subsection{Isolated Sign Language Recognition}
 
-ISLR stands for Isolated Sign Language Recognition, 
-which is the process of recognizing sign language gestures performed by a person in isolation, 
+ISLR stands for Isolated Sign Language Recognition, which is the task of recognizing individual signs or tokens called glosses from a given segment of signing video clip.
+It is the process of recognizing sign language gestures performed by a person in isolation, 
 without considering the context or the surrounding gestures. 
 We will train a machine learning model that can accurately recognize isolated sign language signs and classify them into the correct sign category.
 
@@ -104,7 +104,7 @@ Based on that data, we use ensamble model training a deep learning model for cla
 %-------------------------------------------------------------------------
 \subsection{Data Type}
 
-MediaPipe Holistic Solution is a powerful, easy-to-use software tool that can detect and track multiple human body parts and gestures in real-time video streams. 
+MediaPipe Holistic Solution is a powerful, easy-to-use software tool that can detect and track multiple human body parts and gestures in real-time video streams~\cite{https://doi.org/10.48550/arxiv.1906.08172}. 
 The way that MediaPipe Holistic Solution record human of facial expressions, body language, and hand movements is landmarks.
 Landmarks or keypoints are like dots that are placed on important areas of an object or a person's body. 
 These dots help a computer to understand where these important areas are and how they are moving.
@@ -120,11 +120,11 @@ with the input data of every video frame landmarks captured by MediaPipe Holisti
 
 
 
-%%%%%%%%% REFERENCES
-% {\small
-% \bibliographystyle{ieee_fullname}
-% \bibliography{egbib}
-% }
+%%%%%%%% REFERENCES
+{\small
+\bibliographystyle{ieee_fullname}
+\bibliography{egbib}
+}
 
 \end{CJK*}
 \end{document}
