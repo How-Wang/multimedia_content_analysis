@@ -6,4 +6,13 @@ Camillo Lugaresi, Jiuqiang Tang, Hadon Nash, Chris McClanahan, Esha Uboweja,
   Wan-Teh Chang, Wei Hua, Manfred Georg, and Matthias Grundmann.
 \newblock Mediapipe: A framework for building perception pipelines, 2019.
 
+\bibitem{NIPS2015_07563a3f}
+Xingjian SHI, Zhourong Chen, Hao Wang, Dit-Yan Yeung, Wai-kin Wong, and
+  Wang-chun WOO.
+\newblock Convolutional lstm network: A machine learning approach for
+  precipitation nowcasting.
+\newblock In C. Cortes, N. Lawrence, D. Lee, M. Sugiyama, and R. Garnett,
+  editors, {\em Advances in Neural Information Processing Systems}, volume~28.
+  Curran Associates, Inc., 2015.
+
 \end{thebibliography}

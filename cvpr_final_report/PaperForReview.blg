@@ -3,44 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: PaperForReview.aux
 The style file: ieee_fullname.bst
 Database file #1: egbib.bib
-You've used 1 entry,
+You've used 2 entries,
             2120 wiz_defined-function locations,
-            582 strings with 5013 characters,
-and the built_in function-call counts, 626 in all, are:
-= -- 44
-> -- 73
-< -- 0
-+ -- 29
-- -- 28
-* -- 62
-:= -- 119
-add.period$ -- 2
-call.type$ -- 1
-change.case$ -- 17
+            591 strings with 5378 characters,
+and the built_in function-call counts, 1128 in all, are:
+= -- 82
+> -- 123
+< -- 1
++ -- 47
+- -- 45
+* -- 108
+:= -- 211
+add.period$ -- 6
+call.type$ -- 2
+change.case$ -- 26
 chr.to.int$ -- 0
-cite$ -- 1
-duplicate$ -- 7
-empty$ -- 23
-format.name$ -- 28
-if$ -- 111
+cite$ -- 2
+duplicate$ -- 21
+empty$ -- 52
+format.name$ -- 45
+if$ -- 210
 int.to.chr$ -- 0
-int.to.str$ -- 1
-missing$ -- 0
-newline$ -- 7
-num.names$ -- 2
-pop$ -- 22
+int.to.str$ -- 2
+missing$ -- 1
+newline$ -- 12
+num.names$ -- 6
+pop$ -- 33
 preamble$ -- 1
-purify$ -- 16
+purify$ -- 24
 quote$ -- 0
-skip$ -- 8
+skip$ -- 15
 stack$ -- 0
-substring$ -- 5
-swap$ -- 1
-text.length$ -- 0
+substring$ -- 10
+swap$ -- 4
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 4
+type$ -- 8
 warning$ -- 0
-while$ -- 2
-width$ -- 2
-write$ -- 10
+while$ -- 5
+width$ -- 3
+write$ -- 22

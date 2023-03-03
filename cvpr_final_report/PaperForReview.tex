@@ -16,7 +16,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{booktabs}
-
+\graphicspath{ {./images/} }
 
 % It is strongly recommended to use hyperref, especially for the review version.
 % hyperref with option pagebackref eases the reviewers' job.
@@ -90,8 +90,7 @@ ASL is a visual-gestural language, meaning that it uses facial expressions, body
 \subsection{Isolated Sign Language Recognition}
 
 ISLR stands for Isolated Sign Language Recognition, which is the task of recognizing individual signs or tokens called glosses from a given segment of signing video clip.
-It is the process of recognizing sign language gestures performed by a person in isolation, 
-without considering the context or the surrounding gestures. 
+It is the process of recognizing sign language gestures performed by a person in isolation, without considering the context or the surrounding gestures. 
 We will train a machine learning model that can accurately recognize isolated sign language signs and classify them into the correct sign category.
 
 %------------------------------------------------------------------------
@@ -103,14 +102,19 @@ Based on that data, we use ensamble model training a deep learning model for cla
 
 %-------------------------------------------------------------------------
 \subsection{Data Type}
-
-MediaPipe Holistic Solution is a powerful, easy-to-use software tool that can detect and track multiple human body parts and gestures in real-time video streams~\cite{https://doi.org/10.48550/arxiv.1906.08172}. 
-The way that MediaPipe Holistic Solution record human of facial expressions, body language, and hand movements is landmarks.
+\includegraphics[width=80mm]{holistic_pipeline_example}
+MediaPipe Holistic Solution~\cite{https://doi.org/10.48550/arxiv.1906.08172} is a powerful, easy-to-use software tool that can detect and track multiple human body parts and gestures in real-time video streams. 
+The way that MediaPipe Holistic Solution record facial expressions, body language, and hand movements is landmarks.
 Landmarks or keypoints are like dots that are placed on important areas of an object or a person's body. 
 These dots help a computer to understand where these important areas are and how they are moving.
 
 %------------------------------------------------------------------------
 \subsection{Model}
+First, we will use simple linear model with adding some activation functions to be our basic model.
+In order to get a better score, we would also tried to modified some input data fromat according to the properties of facial expressions, body language, and hand movements.
+\includegraphics[width=80mm]{ConvLSTM}
+We will also try some time-series model and convolution-based model such as ConvLSTM~\cite{NIPS2015_07563a3f} in order to find out the best model fitting the feature in our viddo-captured frame data.
+
 
 %------------------------------------------------------------------------
 \section{Expected Result}
