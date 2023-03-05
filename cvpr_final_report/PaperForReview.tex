@@ -63,22 +63,28 @@ F74082141\\
 杜孟聰\\
 國立成功大學　資訊工程學系\\
 F74082028\\
-{\tt\small secondauthor@i2.org}
+{\tt\small F74082028@gs.ncku.edu.tw}
 }
 \maketitle
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-   In this paper, we classify isolated American Sign Language (ASL) signs. We create a deep learning model trained on labeled landmark data extracted using the MediaPipe Holistic Solution.
+   This paper aims to classify isolated American Sign Language (ASL) signs using a deep learning model. 
+   To achieve this, we trained the model on labeled landmark data extracted via the MediaPipe Holistic Solution. 
+   Our approach leverages the accuracy and reliability of this technology to enhance the robustness of the model and improve its performance. 
+   By accurately classifying ASL signs, our method has the potential to support individuals with hearing impairments and 
+   enable better communication between hearing and non-hearing populations.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
 \section{Introduction}
 \label{sec:intro}
-Around $90\%$ of which are born to hearing parents many of which may not know American Sign Language. 
-Without sign language, deaf babies are at risk of Language Deprivation Syndrome. 
-Learning American Sign Language takes time and resources, which many parents don't have.
-Training a sign language recognizer can improve the learning and confidence of parents who want to learn sign language to communicate with their loved ones.
+Deaf children born to hearing parents are at risk of Language Deprivation Syndrome if they don't have access to a fully developed language early in life. 
+However, learning American Sign Language (ASL) can be time-consuming and resource-intensive for parents. 
+Automatic sign language recognition technology can help overcome this barrier by recognizing and translating signs into text or speech.
+
+In this paper, we propose a novel approach to isolated sign language recognition using computer vision techniques and machine learning algorithms. 
+Our approach improves accuracy, robustness, and speed, as demonstrated on a publicly available dataset. 
 
 %-------------------------------------------------------------------------
 \subsection{American Sign Language}
@@ -97,29 +103,43 @@ We will train a machine learning model that can accurately recognize isolated si
 \section{System framwork}
 \label{sec:formatting}
 
-We will use the raw data extracted from MediaPipe Holistic Solution which record every movement in video by landmark.
-Based on that data, we use ensamble model training a deep learning model for classifying isolated American Sign Language (ASL) signs.
+We will use the raw data extracted from the MediaPipe Holistic Solution, which records every movement in video by landmark.
+Based on that data, we use an ensamble model to train a deep learning model for classifying isolated American Sign Language (ASL) signs.
 
 %-------------------------------------------------------------------------
 \subsection{Data Type}
-\includegraphics[width=80mm]{holistic_pipeline_example}
 MediaPipe Holistic Solution~\cite{https://doi.org/10.48550/arxiv.1906.08172} is a powerful, easy-to-use software tool that can detect and track multiple human body parts and gestures in real-time video streams. 
-The way that MediaPipe Holistic Solution record facial expressions, body language, and hand movements is landmarks.
+\includegraphics[width=80mm]{holistic_pipeline_example}
+The way that MediaPipe Holistic Solution records facial expressions, body language, and hand movements is by using landmarks.
+
 Landmarks or keypoints are like dots that are placed on important areas of an object or a person's body. 
 These dots help a computer to understand where these important areas are and how they are moving.
 
 %------------------------------------------------------------------------
 \subsection{Model}
-First, we will use simple linear model with adding some activation functions to be our basic model.
-In order to get a better score, we would also tried to modified some input data fromat according to the properties of facial expressions, body language, and hand movements.
-\includegraphics[width=80mm]{ConvLSTM}
-We will also try some time-series model and convolution-based model such as ConvLSTM~\cite{NIPS2015_07563a3f} in order to find out the best model fitting the feature in our viddo-captured frame data.
 
+Our proposed model leverages a simple linear architecture with added activation functions to form 
+the foundation of our approach. To enhance the model's performance, we will modify the input data format, 
+taking into consideration the unique properties of facial expressions, body language, and hand movements.
+\includegraphics[width=80mm]{ConvLSTM}
+In addition, we will explore the use of time-series models and convolution-based models, 
+such as ConvLSTM~\cite{NIPS2015_07563a3f}, to identify the optimal model for fitting the features present in our video-captured frame data. 
+By evaluating multiple model architectures and comparing their effectiveness, 
+we aim to select the most robust and efficient approach for our isolated American Sign Language (ASL) sign recognition task.
+
+Our model development process is designed to enhance the accuracy and reliability of our approach, 
+thereby improving the overall quality of our results. 
+Through a comprehensive evaluation of various model architectures, we aim to establish a state-of-the-art ASL sign recognition system 
+that can effectively support communication between deaf and hearing populations.
 
 %------------------------------------------------------------------------
 \section{Expected Result}
-We hope creating the state-of-the-art model to predict the American Sign Language (ASL) signs correctly
-with the input data of every video frame landmarks captured by MediaPipe Holistic Solution.
+Our proposed state-of-the-art model, which utilizes the input data of every video frame's landmarks captured by the MediaPipe Holistic Solution, 
+is expected to significantly improve the accuracy and speed of isolated sign language recognition. 
+We anticipate that the model will achieve high recognition rates for individual signs, 
+thus aiding in the communication and language acquisition process of individuals who are deaf or hard of hearing. 
+We believe that our research will contribute to the development of more sophisticated and efficient sign language recognition technology, 
+making communication more accessible for the Deaf community
 
 
 
