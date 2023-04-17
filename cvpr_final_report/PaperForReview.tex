@@ -16,6 +16,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{booktabs}
+\usepackage{xcolor}
 \graphicspath{ {./images/} }
 
 % It is strongly recommended to use hyperref, especially for the review version.
@@ -84,7 +85,11 @@ However, learning American Sign Language (ASL) can be time-consuming and resourc
 Automatic sign language recognition technology can help overcome this barrier by recognizing and translating signs into text or speech.
 
 In this paper, we propose a novel approach to isolated sign language recognition using computer vision techniques and machine learning algorithms. 
-Our approach improves accuracy, robustness, and speed, as demonstrated on a publicly available dataset. 
+Our approach improves accuracy, robustness, and speed, as demonstrated on a publicly available dataset.
+
+{\color{blue} this 
+is the test for change 
+color}
 
 %-------------------------------------------------------------------------
 \subsection{American Sign Language}
@@ -100,14 +105,11 @@ It is the process of recognizing sign language gestures performed by a person in
 We will train a machine learning model that can accurately recognize isolated sign language signs and classify them into the correct sign category.
 
 %------------------------------------------------------------------------
-\section{System framwork}
+\section{Explorative Data Analysis}
 \label{sec:formatting}
 
-We will use the raw data extracted from the MediaPipe Holistic Solution, which records every movement in video by landmark.
-Based on that data, we use an ensamble model to train a deep learning model for classifying isolated American Sign Language (ASL) signs.
-
 %-------------------------------------------------------------------------
-\subsection{Data Type}
+\subsection{Raw Data Format}
 MediaPipe Holistic Solution~\cite{https://doi.org/10.48550/arxiv.1906.08172} is a powerful, easy-to-use software tool that can detect and track multiple human body parts and gestures in real-time video streams. 
 \includegraphics[width=80mm]{holistic_pipeline_example}
 The way that MediaPipe Holistic Solution records facial expressions, body language, and hand movements is by using landmarks.
@@ -116,21 +118,69 @@ Landmarks or keypoints are like dots that are placed on important areas of an ob
 These dots help a computer to understand where these important areas are and how they are moving.
 
 %------------------------------------------------------------------------
-\subsection{Model}
+\subsection{Data Selection}
+{\color{blue} 
+The data utilized in this study was obtained from Mediapipe’s Holistic solution and contains landmarks from three categories: Face, Pose (body), and Hand.
+In accordance with established linguistic norms, movements below the chest are generally not utilized in sign language for conveying linguistic meanings, therefore, we will exclude landmarks from the hips down and retain only the relevant landmarks for Pose landmarks. Although facial expressions are not an integral part of signing, they can still play a role in identifying words that require the signer to point to parts of the face. Furthermore, facial expressions can provide subtle cues to differentiate between similar signs. Thus, we will utilize landmarks for the major features of the face: eyes, eyebrows, nose, and lips, and trim out the rest. Given the crucial role of hands in sign language, all Hand landmarks will be included in our training data. In summary, our model will be trained using landmarks from the arms, hands, and major facial features to recognize isolated signs.
+}
 
-Our proposed model leverages a simple linear architecture with added activation functions to form 
-the foundation of our approach. To enhance the model's performance, we will modify the input data format, 
-taking into consideration the unique properties of facial expressions, body language, and hand movements.
-\includegraphics[width=80mm]{ConvLSTM}
-In addition, we will explore the use of time-series models and convolution-based models, 
-such as ConvLSTM~\cite{NIPS2015_07563a3f}, to identify the optimal model for fitting the features present in our video-captured frame data. 
-By evaluating multiple model architectures and comparing their effectiveness, 
-we aim to select the most robust and efficient approach for our isolated American Sign Language (ASL) sign recognition task.
+%------------------------------------------------------------------------
+\subsection{Data Imputation}
+{\color{blue} 
 
-Our model development process is designed to enhance the accuracy and reliability of our approach, 
-thereby improving the overall quality of our results. 
-Through a comprehensive evaluation of various model architectures, we aim to establish a state-of-the-art ASL sign recognition system 
-that can effectively support communication between deaf and hearing populations.
+As described in the competition’s guidelines, not all frames’ Hand data are complete. We have identified two categories with respect to the nature of the missed Hand data:
+The first category is where the hand rests idle below the waist. In sign language, there are signs that require only one hand to convey meaning. In such cases, the signer usually rests the other hand at their side, and the missed landmarks on this hand can be disregarded.
+The second category involves hands that are raised around the chest or face. A hand in these positions usually indicate that it is actively being used to sign. In such cases, certain techniques need to be employed to deal with these lost data. In cases where hand data is lost in some frames but not others, interpolation can be employed to fill the gaps. The reliability of this method may depend on the number of subtle movements between the frames and the size of the gaps. Alternatively, if the loss of hand data is too substantial (e.g., if no hand data exists across the entire clip), discarding the clip altogether may be the best option. Another viable approach to imputing missed data is to use statistical methods such as averaging measures from other data with the same label. However, complications may arise when the number of frames differs across clips, even when they correspond to the same sign.
+
+}
+
+%------------------------------------------------------------------------
+
+\section{Input Data Format}
+\label{sec:formatting}
+
+%-------------------------------------------------------------------------
+
+\subsection{Hierarchical Encoding}
+{\color{blue} 
+Rather than plotting all landmarks on a shared “global” coordinate system, we will map landmarks onto a hierarchy of local coordinate systems based on the articulation of joints and muscles. We propose that organizing landmark coordinates in a hierarchical structure may help reduce the impact of variations in different realizations of the same sign.
+Hypothesis 1. Organizing landmark coordinates in a hierarchical structure in a gesture recognition task can help reduce the impact of variations in different realizations of the same sign.
+The reasoning to Hypothesis 1. is that, for most signs, it does not matter whether the hands are slightly below the chest or above it nor does it matter whether it is slightly outside of shoulder width or slightly within, i.e. slight variations in the relative position does not typically result in significant semantic differences. Such variations may be observed across differnt signers with differnt body structures and even in the same signer across different instances and, with one global coordinate system, are reflected systematically on all landmark coordinates of the hands. If we instead encode the hand landmarks in the wrists coordinate system, that variation will be eliminated in the hands and only reflected in the wrists and elbows. Since the number of landmarks impacted by this variation significantly decreases in the hierarchical scheme, we assert that this will in general make the model more robust to variations that are not semantically significant.
+}
+\includegraphics[width=80mm]{hierarchical_scheme}
+
+%------------------------------------------------------------------------
+
+\subsection{Orientation-Focused Encoding}
+{\color{blue} 
+On top of mapping landmarks onto a hierarchy of coordinate systems, we aim to investigate the impact of an extra encoding scheme on the performance of the model. Specifically, we will explore the effect of encoding only the orientation of landmarks with respect to their origin (i.e., parent) on the final results. To achieve this, we will scale all landmarks down to a uniform size.
+On one hand, this approach may help eliminate slight variations in landmark coordinates that arise from individual differences in body structure, such as differences in bone length. On the other hand, since only the x and y coordinates are used in this specific implementation, rotations that do not result in a change in orientation on the xy plane may not be reliably captured. In contrast, if the norm or length of the landmark vectors is also encoded, at least some information about the degree of rotation could be partially captured. For example, the shorter the forearm appears, the more it has rotated towards the observer.
+}
+
+%------------------------------------------------------------------------
+\subsection{Temporal Normalization by Down-/Upsampling}
+{\color{blue} 
+Accounting for the different signing speeds among individuals is an important consideration in training a robust sign language recognition model. In practice, signers can vary greatly in their signing speed, and this can result in variations in the rate at which landmarks move from frame to frame. To ensure that our model is not overly sensitive to such differences, we will downsample or upsample the clips to achieve a uniform number of frames. By doing so, we can eliminate any potential errors introduced by variations in the speed at which landmarks move.
+}
+%------------------------------------------------------------------------
+
+\subsection{Landmark Mirroring}
+{\color{blue} 
+In sign language, signers commonly rely on a dominant hand to perform the majority of signs, with the specific hand varying among individuals.~\cite{Sign} When signing words that require only one hand, signers typically have the freedom to choose which hand to use. For words that require both hands and involve asymmetric movements, instructions usually designate separate sets of movements for the dominant hand and for the non-dominant hand; it is ultimately up to the signer to decide which hand is dominant.
+
+Thus, for most sign language gestures, flipping the gesture horizontally does not alter its meaning. We have thoroughly examined the dataset and identified no labels such as “left” or “right” for which the choice of dominant hand may affect the meaning. We have thus eliminated concerns for the impact of hand selection in this specific dataset; with that in mind, in our implementation, we will augment the dataset by creating a mirrored version of each clip, enabling the model to learn to recognize the gesture regardless of which hand is designated as dominant.
+}
+%=========here i am ~~~
+%------------------------------------------------------------------------
+
+\section{Model}
+{\color{blue}
+The Transformer architecture has demonstrated efficacy in sequence-based tasks for dynamic gesture recognition~\cite{TR}. It is important to note that our task differs from the task described in~\cite{TR}, as our input data is comprised of landmark coordinates rather than bitmap images. Specifically, the authors in~\cite{TR} utilize a Convolutional Neural Network (CNN) architecture, ResNet-18, to convert bitmap images into embeddings before feeding them into the Transformer. Despite this difference, we find the Transformer architecture to be a suitable model for our task given its success in a similar domain. Our proposed implementation will use the Transformer with sequences of landmark coordinates as input, and the model will output probabilities for each label.
+
+Our proposed model will consist of a Transformer encoder, followed by a multi-layer perceptron (MLP) decoder. The encoder will be responsible for encoding the input sequence of landmark coordinates into a fixed-length representation, which will then be passed to the decoder to produce the final output probabilities for each label. The MLP decoder will consist of two fully connected layers with ReLU activation functions and a final softmax layer to produce the output probabilities.
+
+To improve the model’s ability to capture temporal dependencies between landmarks, we will also experiment with the use of a Recurrent Neural Network (RNN) architecture as an alternative to the Transformer encoder. In particular, we will explore the use of a Long Short-Term Memory (LSTM) network, which has been shown to be effective in capturing long-term dependencies in sequential data.
+}
 
 %------------------------------------------------------------------------
 \section{Expected Result}
@@ -140,8 +190,6 @@ We anticipate that the model will achieve high recognition rates for individual 
 thus aiding in the communication and language acquisition process of individuals who are deaf or hard of hearing. 
 We believe that our research will contribute to the development of more sophisticated and efficient sign language recognition technology, 
 making communication more accessible for the Deaf community
-
-
 
 
 %%%%%%%% REFERENCES

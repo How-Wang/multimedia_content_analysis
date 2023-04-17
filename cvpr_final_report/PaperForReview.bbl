@@ -1,18 +1,22 @@
 \begin{thebibliography}{1}\itemsep=-1pt
 
+\bibitem{Sign}
+Brenda Cartwright.
+\newblock Does it matter which hand i sign with? using your dominant hand when
+  signing, 2022.
+\newblock \url{https://www.signingsavvy.com/blog/377/} [Accessed:
+  (2022-04-16)].
+
+\bibitem{TR}
+Andrea D’Eusanio, Alessandro Simoni, Stefano Pini, Guido Borghi, Roberto
+  Vezzani, and Rita Cucchiara.
+\newblock A transformer-based network for dynamic hand gesture recognition.
+\newblock 11 2020.
+
 \bibitem{https://doi.org/10.48550/arxiv.1906.08172}
 Camillo Lugaresi, Jiuqiang Tang, Hadon Nash, Chris McClanahan, Esha Uboweja,
   Michael Hays, Fan Zhang, Chuo-Ling Chang, Ming~Guang Yong, Juhyun Lee,
   Wan-Teh Chang, Wei Hua, Manfred Georg, and Matthias Grundmann.
 \newblock Mediapipe: A framework for building perception pipelines, 2019.
-
-\bibitem{NIPS2015_07563a3f}
-Xingjian SHI, Zhourong Chen, Hao Wang, Dit-Yan Yeung, Wai-kin Wong, and
-  Wang-chun WOO.
-\newblock Convolutional lstm network: A machine learning approach for
-  precipitation nowcasting.
-\newblock In C. Cortes, N. Lawrence, D. Lee, M. Sugiyama, and R. Garnett,
-  editors, {\em Advances in Neural Information Processing Systems}, volume~28.
-  Curran Associates, Inc., 2015.
 
 \end{thebibliography}
