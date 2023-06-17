@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.2)  17 APR 2023 22:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2023.3.2)  18 JUN 2023 04:52
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -672,42 +672,58 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 7
 (/usr/local/texlive/2022/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-<./images//holistic_pipeline_example.jpg, id=76, 2006.49625pt x 1000.73875pt>
+<./images//holistic_pipeline_example.jpg, id=104, 2006.49625pt x 1000.73875pt>
 File: ./images//holistic_pipeline_example.jpg Graphic file (type jpg)
 <use ./images//holistic_pipeline_example.jpg>
 Package pdftex.def Info: ./images//holistic_pipeline_example.jpg  used on input
- line 114.
+ line 109.
 (pdftex.def)             Requested size: 227.62204pt x 113.51735pt.
  [1{/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 
  <./images//holistic_pipeline_example.jpg>]
-<./images//hierarchical_scheme.png, id=102, 340.27126pt x 241.90375pt>
+<./images//hierarchical_scheme.png, id=130, 340.27126pt x 241.90375pt>
 File: ./images//hierarchical_scheme.png Graphic file (type png)
 <use ./images//hierarchical_scheme.png>
 Package pdftex.def Info: ./images//hierarchical_scheme.png  used on input line 
-150.
+145.
 (pdftex.def)             Requested size: 227.62204pt x 161.81998pt.
- [2 <./images//hierarchical_scheme.png>]
+ [2 <./images//hierarchical_scheme.png>] [3]
+<./images//early_integration.drawio.png, id=153, 1290.8225pt x 995.72pt>
+File: ./images//early_integration.drawio.png Graphic file (type png)
+<use ./images//early_integration.drawio.png>
+Package pdftex.def Info: ./images//early_integration.drawio.png  used on input 
+line 219.
+(pdftex.def)             Requested size: 227.62204pt x 175.57544pt.
+<./images//late_integration.drawio.png, id=154, 1300.86pt x 996.72375pt>
+File: ./images//late_integration.drawio.png Graphic file (type png)
+<use ./images//late_integration.drawio.png>
+Package pdftex.def Info: ./images//late_integration.drawio.png  used on input l
+ine 223.
+(pdftex.def)             Requested size: 227.62204pt x 174.39885pt.
+ [4 <./images//early_integration.drawio.png> <./images//late_integration.drawio
+.png>]
 (./PaperForReview.bbl (./PaperForReview.brf)
 \tf@brf=\write4
 \openout4 = `PaperForReview.brf'.
 
-) [3] (./PaperForReview.aux)
+) [5
+
+] (./PaperForReview.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `PaperForReview.out' has not changed.
-(rerunfilecheck)             Checksum: AE056D4281C74543FC2C8ADE11740633;2390.
+(rerunfilecheck)             Checksum: E584BF5FF8E935BFED8CE098088C46C2;4573.
 Package rerunfilecheck Info: File `PaperForReview.brf' has not changed.
-(rerunfilecheck)             Checksum: A8383948A4FD823A98333C591D5CE748;225.
+(rerunfilecheck)             Checksum: C5AB7389046CAEB8F23A3F8AA19DBB3A;269.
  ) 
 Here is how much of TeX's memory you used:
- 15725 strings out of 478268
- 256802 string characters out of 5846348
- 575161 words of memory out of 5000000
- 33625 multiletter control sequences out of 15000+600000
- 493507 words of font info for 89 fonts, out of 8000000 for 9000
+ 15778 strings out of 478268
+ 258058 string characters out of 5846348
+ 576161 words of memory out of 5000000
+ 33664 multiletter control sequences out of 15000+600000
+ 496245 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  87i,9n,91p,995b,1132s stack positions out of 10000i,1000n,20000p,200000b,200000s
 {/usr/local/texlive/2022/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
@@ -725,14 +741,19 @@ bsmiu6d.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/arphic/bsmiu/bsmiu7
 local/texlive/2022/texmf-dist/fonts/type1/arphic/bsmiu/bsmiu80.pfb></usr/local/
 texlive/2022/texmf-dist/fonts/type1/arphic/bsmiu/bsmiu8a.pfb></usr/local/texliv
 e/2022/texmf-dist/fonts/type1/arphic/bsmiu/bsmiu8c.pfb></usr/local/texlive/2022
-/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2022/texmf-d
-ist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/
-type1/urw/times/utmr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/
-times/utmri8a.pfb>
-Output written on PaperForReview.pdf (3 pages, 459074 bytes).
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2022/
+texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/local/texlive/2022/te
+xmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-d
+ist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2022/texmf-dis
+t/fonts/type1/urw/courier/ucrr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/
+type1/urw/times/utmb8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/
+times/utmr8a.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/urw/times/utmr
+i8a.pfb>
+Output written on PaperForReview.pdf (5 pages, 628391 bytes).
 PDF statistics:
- 212 PDF objects out of 1000 (max. 8388607)
- 149 compressed objects within 2 object streams
- 22 named destinations out of 1000 (max. 500000)
- 183 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 283 PDF objects out of 1000 (max. 8388607)
+ 203 compressed objects within 3 object streams
+ 32 named destinations out of 1000 (max. 500000)
+ 249 words of extra memory for PDF output out of 10000 (max. 10000000)
 

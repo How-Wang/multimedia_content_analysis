@@ -86,11 +86,6 @@ Automatic sign language recognition technology can help overcome this barrier by
 
 In this paper, we propose a novel approach to isolated sign language recognition using computer vision techniques and machine learning algorithms. 
 Our approach improves accuracy, robustness, and speed, as demonstrated on a publicly available dataset.
-
-{\color{blue} this 
-is the test for change 
-color}
-
 %-------------------------------------------------------------------------
 \subsection{American Sign Language}
 
@@ -181,16 +176,61 @@ Our proposed model will consist of a Transformer encoder, followed by a multi-la
 
 To improve the model’s ability to capture temporal dependencies between landmarks, we will also experiment with the use of a Recurrent Neural Network (RNN) architecture as an alternative to the Transformer encoder. In particular, we will explore the use of a Long Short-Term Memory (LSTM) network, which has been shown to be effective in capturing long-term dependencies in sequential data.
 }
+%------------------------------------------------------------------------
+\section{Learning Relative Positions}
+In the realm of sign language recognition, the ability to discern relative positions between the hands and other parts of the body is of paramount importance. This becomes particularly evident in situations where the signer points to specific body parts. Moreover, the relative positions between different landmarks of the hands can also significantly influence the recognition process, especially in signs that necessitate the signer to tap one fingertip to another. These relative positions can provide crucial information that aids the recognizer in accurately interpreting the signs.
+In this exploration, we ask ourselves the question of whether a model can independently learn to identify relevant relative positions, given the raw landmark points. The aim is to ascertain whether it is possible to eliminate the need to supply the model with programmatically calculated and selected relative positions between pairs of landmark points, without compromising the accuracy of recognition.
+
+A significant trade-off is evident in this scenario. The number of relative positions among 
+$n$
+ points is calculated as 
+$\frac{nx(n-1)}{2}$
+, which has a complexity of 
+$O(n^2)$
+. This could considerably increase the computational complexity during inference and backpropagation. Conversely, if explicit relative positions are entirely omitted in the inputs, the model will be compelled to learn them independently, if at all. This might prolong the time required for convergence.
+
+To better understand this trade-off, we propose two distinct approaches for training the sign language recognizer.
+%------------------------------------------------------------------------
+\subsection{Entrusting the Model with Extraction of Useful Relative Positions}
+In the first approach, we identify a set of landmarks, which include keypoints from the eyes, nose, lips, and the hand. We refer to this set as an ‘anchor group’. These keypoints are then fed into a frame-wise multi-level perceptron (MLP) layer. The underlying hypothesis here is that the MLP can learn to extract useful relative positions between these keypoints in each frame and subsequently utilize them for recognition.
+%------------------------------------------------------------------------
+\subsection{Explicit Computation of Relative Positions}
+The second approach takes a more direct route. Rather than entrusting the model with the task of extracting useful relative positions, we compute these positions explicitly in a feature expansion layer. In this scenario, the model’s primary task is to identify which relative positions are useful, without the added burden of having to extract them.
+%------------------------------------------------------------------------
+\section{Early Integration vs Late Integration}
+Inspired by the dichotomy between early and late fusion strategies in multi-modal learning as delineated in ~\cite{Boulahia2021}, our study delves into a similar contrast between early integration and late integration of different “feature groups” in the context of sign language recognition.
+%------------------------------------------------------------------------
+\subsection{Feature Grouping: Distinguishing Between Learning Shapes and Spatial Relations}
+In our approach, we categorize sets of landmark points into distinct groups, each of which serves a unique purpose. These groups can be broadly classified into three types: “local groups”, “anchor groups”, and the “difference group”.
+
+“Local groups” refer to groups that represent specific body parts, such as the hand, lips, etc. The primary objective of these groups is to enable the model to learn the “shape” of the corresponding body parts.
+
+“Anchor groups”, which are already introduced in the last section, are groups of keypoints from different body parts, designed to facilitate the learning of relative positions.
+
+Lastly, the “difference group” is a selected collection of computed differences (relative positions) between landmark points.
+
+The role of “anchor groups” or the “difference group” is to allow the model to learn the “spatial relations” between different body parts or landmarks.
+
+In our model, irrespective of the scheme we choose to adopt, all features of the same group are initially fed into a Multi-Layer Perceptron (MLP) to obtain a group-level representation. Integration, in this context, refers to the amalgamation of different group-level representations into a single, unified embedding. This integration could occur either before or after the transformer layer, i.e., early if before and late if after. Furthermore, this integration could involve any number of groups and could be between groups of the same type or of different types. In our exploration, we specifically focus on one particular variety of integration at two different stages; namely, we investigate how integrating “shape” and “spatial relations” information at different stages of the model affects performance.
 
 %------------------------------------------------------------------------
-\section{Expected Result}
-Our proposed state-of-the-art model, which utilizes the input data of every video frame's landmarks captured by the MediaPipe Holistic Solution, 
-is expected to significantly improve the accuracy and speed of isolated sign language recognition. 
-We anticipate that the model will achieve high recognition rates for individual signs, 
+\subsection{Early Integration: A Unified Approach}
+In the early integration approach, at the frame level, information from all different feature groups is consolidated into a single vector before the transformer attempts to learn how this unified representation evolves over time by comparing the frames. This scheme necessitates only one unifying transformer, and the final MLP classifier solely takes the output from this single transformer as input.
+\includegraphics[width=80mm]{early_integration.drawio}
+%------------------------------------------------------------------------
+\subsection{Late Integration: A Multi-Transformer Approach}
+Contrarily, in the late integration approach, information from different group types is represented as separate embeddings at the frame level. This necessitates multiple transformers, one for the “shape” embeddings and another for the “spatial relations” embeddings, to process how these two types of information change along the temporal dimension. Finally, the output embeddings from each transformer are combined before being fed into the final MLP classifier.
+\includegraphics[width=80mm]{late_integration.drawio}
+%------------------------------------------------------------------------
+\section{Result}
+Our model, which utilizes the input data of every video frame's landmarks captured by the MediaPipe Holistic Solution, 
+gets the accuracy $0.73$ of isolated sign language recognition.
+The parameters of our model are Early Integration with Anchor Group and final layer of model for dimension is $512$. Futhermore, the best score on Kaggle is $0.89$.
+We have done that the model will achieve high recognition rates for individual signs, 
 thus aiding in the communication and language acquisition process of individuals who are deaf or hard of hearing. 
 We believe that our research will contribute to the development of more sophisticated and efficient sign language recognition technology, 
-making communication more accessible for the Deaf community
-
+making communication more accessible for the Deaf community.
+%------------------------------------------------------------------------
 
 %%%%%%%% REFERENCES
 {\small

@@ -1,5 +1,11 @@
 \begin{thebibliography}{1}\itemsep=-1pt
 
+\bibitem{Boulahia2021}
+Said~Yacine Boulahia, Abdenour Amamra, Mohamed~Ridha Madi, and Said Daikh.
+\newblock Early, intermediate and late fusion strategies for robust deep
+  learning-based multimodal action recognition.
+\newblock {\em Machine Vision and Applications}, 32(6):121, Sep 2021.
+
 \bibitem{Sign}
 Brenda Cartwright.
 \newblock Does it matter which hand i sign with? using your dominant hand when
